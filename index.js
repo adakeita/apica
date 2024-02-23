@@ -21,9 +21,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Sample data
-
 // Routes
+
+app.get("/", (req, res) => {
+	res.send("Welcome to my API!");
+});
+
 // GET all
 app.get("/customers", async (req, res) => {
 	try {
