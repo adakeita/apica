@@ -23,10 +23,6 @@ app.use(express.json());
 
 // Routes
 
-app.get("/", (req, res) => {
-	res.send("Welcome to my API!");
-});
-
 // GET all
 app.get("/customers", async (req, res) => {
 	try {
@@ -146,6 +142,10 @@ app.put("/transactions/:id", async (req, res) => {
 		console.error(err);
 		res.status(500).json({ message: "Internal server error" });
 	}
+});
+
+app.get("/", (req, res) => {
+	res.send("Welcome to my API!");
 });
 
 app.listen(PORT, () => {
