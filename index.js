@@ -20,25 +20,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Sample data
-let customers = [{ id: 1, name: "John Doe", email: "joe@gmail.com" }];
-let products = [
-	{ id: 1, name: "Coke", price: 1.5 },
-	{ id: 2, name: "Pepsi", price: 1.5 },
-];
-let vendingMachines = [
-	{ id: 1, location: "New York" },
-	{ id: 2, location: "Los Angeles" },
-];
-let transactions = [
-	{
-		id: 1,
-		customerId: 1,
-		productId: 1,
-		vendingMachineId: 1,
-		timestamp: new Date(),
-		deleted: false,
-	},
-];
 
 // Routes
 // GET all
