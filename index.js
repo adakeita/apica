@@ -5,7 +5,7 @@ const pool = new Pool({
 	host: "viaduct.proxy.rlwy.net",
 	database: "railway",
 	password: "gb1-E-c5b*3bEeE*D2**F5**C-b1gB3A",
-	port: 5432,
+	port: 44252,
 });
 
 pool.on("error", (err, client) => {
