@@ -1,11 +1,13 @@
+require("dotenv").config();
+
 const { Pool } = require("pg");
 
 const pool = new Pool({
-	user: "postgres",
-	host: "viaduct.proxy.rlwy.net",
-	database: "railway",
-	password: "gb1-E-c5b*3bEeE*D2**F5**C-b1gB3A",
-	port: 44252,
+	user: process.env.PGUSER,
+	host: process.env.PGHOST,
+	database: process.env.PGDATABASE,
+	password: process.env.PGPASSWORD,
+	port: process.env.PGPORT,
 });
 
 pool.on("error", (err, client) => {
@@ -15,7 +17,7 @@ pool.on("error", (err, client) => {
 
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PGPORT || 3000;
 
 app.use(express.json());
 
