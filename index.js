@@ -43,6 +43,7 @@ app.post("/customers", async (req, res) => {
 			[name, email]
 		);
 		res.status(201).json(result.rows[0]);
+		log.info(`New customer created: ${name}`);
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ message: "Internal server error" });
@@ -100,10 +101,10 @@ app.post("/vending-machines", async (req, res) => {
 
 // Routes transactions
 
-// All transactions
+// All transactions not marked as deleted
 app.get("/transactions", async (req, res) => {
 	try {
-		const result = await pool.query("SELECT * FROM transactions");
+		const result = await pool.query("SELECT * FROM transactions WHERE deleted = false");
 		res.json(result.rows);
 	} catch (err) {
 		console.error(err);
@@ -114,10 +115,11 @@ app.get("/transactions", async (req, res) => {
 // POST new transaction
 app.post("/transactions", async (req, res) => {
 	try {
-		const { customerId, productId, vendingMachineId } = req.body;
+		const { customerId, productId, vendingMachineId, price, quantity } = req.body;
+		// Assuming price is provided by the client; alternatively, you could look it up based on productId
 		const result = await pool.query(
-			"INSERT INTO transactions (customer_id, product_id, vending_machine_id) VALUES ($1, $2, $3) RETURNING *",
-			[customerId, productId, vendingMachineId]
+			"INSERT INTO transactions (customer_id, product_id, vending_machine_id, price, quantity, timestamp, deleted) VALUES ($1, $2, $3, $4, $5, NOW(), false) RETURNING *",
+			[customerId, productId, vendingMachineId, price, quantity]
 		);
 		res.status(201).json(result.rows[0]);
 	} catch (err) {
@@ -138,6 +140,25 @@ app.put("/transactions/:id", async (req, res) => {
 			return res.status(404).json({ message: "Transaction not found" });
 		}
 		res.json(result.rows[0]);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ message: "Internal server error" });
+	}
+});
+
+app.put("/transactions/:id/mark-as-deleted", async (req, res) => {
+	try {
+		const id = req.params.id; // Assuming `id` is the identifier of the transaction
+		const result = await pool.query(
+			"UPDATE transactions SET deleted = true WHERE id = $1 RETURNING *",
+			[id]
+		);
+
+		if (result.rowCount === 0) {
+			return res.status(404).json({ message: "Transaction not found" });
+		}
+
+		res.json({ message: "Transaction marked as deleted", transaction: result.rows[0] });
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ message: "Internal server error" });
