@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/endpoints.css">
+</head>
+
+<body>
+    <h1>Products</h1>
+    <pre id="jsonData"></pre>
+    <script>
+        fetch('https://apica-production-779f.up.railway.app/products')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+
+</html>

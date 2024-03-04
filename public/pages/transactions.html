@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vending Machines</title>
+    <title>Transactions</title>
     <link rel="stylesheet" href="/css/endpoints.css">
 </head>
 
 <body>
-    <h1>Vending Machines</h1>
+    <h1>Transactions</h1>
     <pre id="jsonData"></pre>
     <script>
-        fetch('https://apica-production-779f.up.railway.app/vendingmachines')
+        fetch('https://apica-production-779f.up.railway.app/transactions')
             .then(response => response.json())
             .then(data => {
                 document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
