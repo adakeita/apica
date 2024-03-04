@@ -12,7 +12,7 @@
     <h1>Vending Machines</h1>
     <pre id="jsonData"></pre>
     <script>
-        fetch('https://apica-production-779f.up.railway.app/vendingmachines')
+        fetch('https://apica-production-779f.up.railway.app/vending-machines')
             .then(response => response.json())
             .then(data => {
                 document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
