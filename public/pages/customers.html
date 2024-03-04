@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers List</title>
+</head>
+
+<body>
+    <h1>Customers</h1>
+    <pre id="jsonData"></pre>
+    <script>
+        fetch('https://your-app-name.up.railway.app/customers')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.getElementById('jsonData').textContent = 'Error fetching data: ' + error.toString();
+            });
+
+    </script>
+</body>
+
+</html>
