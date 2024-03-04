@@ -167,6 +167,27 @@ app.put("/transactions/:id/mark-as-deleted", async (req, res) => {
 	}
 });
 
+// DELETE endpoint to remove a transaction by ID
+app.delete("/transactions/:id", async (req, res) => {
+	try {
+		const { id } = req.params;
+		const deleteQuery = "DELETE FROM transactions WHERE id = $1 RETURNING *";
+		const result = await pool.query(deleteQuery, [id]);
+
+		if (result.rows.length === 0) {
+			return res.status(404).json({ message: "Transaction not found" });
+		}
+
+		res.json({
+			message: "Transaction deleted successfully",
+			transaction: result.rows[0],
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ message: "Internal server error" });
+	}
+});
+
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
 });
