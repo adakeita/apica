@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+const express = require("express");
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -15,8 +15,6 @@ pool.on("error", (err, client) => {
 	process.exit(-1);
 });
 
-const express = require("express");
-const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
