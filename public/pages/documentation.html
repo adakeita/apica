@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow: auto;
+            border-radius: 5px;
+        }
+
+        .endpoint {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>API Documentation</h1>
+    <p>This document outlines how to interact with the API, including available endpoints and expected request formats.
+    </p>
+
+    <section class="endpoint">
+        <h2>GET /customers</h2>
+        <p>Retrieves a list of all customers.</p>
+        <pre>GET /customers</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>POST /customers</h2>
+        <p>Creates a new customer. Requires a JSON body with "name" and "email".</p>
+        <pre>POST /customers
+Content-Type: application/json
+
+{
+    "name": "Alice Smith",
+    "email": "alice@example.com"
+}</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>GET /products</h2>
+        <p>Retrieves a list of all products.</p>
+        <pre>GET /products</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>POST /products</h2>
+        <p>Creates a new product. Requires a JSON body with "name" and "price".</p>
+        <pre>POST /products
+Content-Type: application/json
+
+{
+    "name": "Water Bottle",
+    "price": 1.99
+}</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>GET /vending-machines</h2>
+        <p>Retrieves a list of all vending machines.</p>
+        <pre>GET /vending-machines</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>POST /vending-machines</h2>
+        <p>Creates a new vending machine. Requires a JSON body with "location".</p>
+        <pre>POST /vending-machines
+Content-Type: application/json
+
+{
+    "location": "Second Floor"
+}</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>GET /transactions (Active Only)</h2>
+        <p>Retrieves a list of all active (not marked as deleted) transactions.</p>
+        <pre>GET /transactions</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>POST /transactions</h2>
+        <p>Creates a new transaction. Requires a JSON body with "customerId", "productId", "vendingMachineId", "price",
+            and "quantity".</p>
+        <pre>POST /transactions
+Content-Type: application/json
+
+{
+    "customerId": "uuid-goes-here",
+    "productId": 1,
+    "vendingMachineId": 1,
+    "price": 1.50,
+    "quantity": 1
+}</pre>
+    </section>
+
+    <section class="endpoint">
+        <h2>PUT /transactions/:id</h2>
+        <p>Marks a transaction as deleted based on its ID.</p>
+        <pre>PUT /transactions/1</pre>
+    </section>
+</body>
+
+</html>

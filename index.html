@@ -5,18 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vending Machine</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <script src="/public/js/frontend.js" async defer></script>
 </head>
 
 <body>
-    <h1>Welcome to the API Vending Machine</h1>
-    <div id="vending-machine">
-        <div class="product" data-endpoint="/customers">Customers</div>
-        <div class="product" data-endpoint="/products">Products</div>
-        <div class="product" data-endpoint="/vending-machines">Vending Machines</div>
-        <div class="product" data-endpoint="/transactions">Transactions</div>
+    <div class="page-container">
+        <main>
+            <div class="headline-wrapper">
+                <h1>Endpoint Vending Machine</h1>
+            </div>
+            <div id="vending-machine">
+                <div class="display-products-wrapper">
+                    <div class="display" id="display">
+                        <div class="display-content">
+                            <p id="displayMessage">Select endpoint.</p>
+                            <div id="displayButtons" style="display: none;">
+                                <button id="okButton">OK</button>
+                                <button id="abortButton">Abort</button>
+                            </div>
+                            <div class="turn-dial"></div>
+                        </div>
+                    </div>
+                    <div class="products-wrapper">
+                        <div class="product" data-endpoint="/customers">Customers</div>
+                        <div class="product" data-endpoint="/products">Products</div>
+                        <div class="product" data-endpoint="/vending-machines">Vending Machines</div>
+                        <div class="product" data-endpoint="/transactions">Transactions</div>
+                    </div>
+                </div>
+                <div class="dispenser"></div>
+            </div>
+        </main>
     </div>
+</body>
+
+</html>
 </body>
 
 </html>
