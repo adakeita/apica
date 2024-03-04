@@ -89,6 +89,19 @@ main {
 	font-family: "Lobster", sans-serif;
 }
 
+.headline-wrapper a {
+	text-align: end;
+	width: 100%;
+	display: block;
+	color: white;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.headline-wrapper a:hover {
+	text-decoration: underline;
+}
+
 #vending-machine {
 	position: relative;
 	display: flex;
